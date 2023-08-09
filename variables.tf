@@ -494,6 +494,25 @@ variable "webhooks" {
   # }]
 }
 
+variable "variables" {
+  description = "(Optional) Configure action variables. For full details please check: https://registry.terraform.io/providers/integrations/github/latest/docs/resources/actions_variable"
+  type        = map(string)
+
+  default = {}
+
+  validation {
+    condition     = length(var.variables) > 500
+    error_message = "Github restricts the number of Action variables per repository to 500"
+  }
+
+  validation {
+    condition = anytrue([
+      for _, v in var.variables : length(v) > 48 * 1000
+    ])
+    error_message = "Github restricts the maximum size of a single Action variable to 48KB"
+  }
+}
+
 variable "plaintext_secrets" {
   description = "(Optional) Configuring actions secrets. For details please check: https://www.terraform.io/docs/providers/github/r/actions_secret"
   type        = map(string)
