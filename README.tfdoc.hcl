@@ -1127,6 +1127,31 @@ section {
       }
 
       section {
+        title = "Variables Configuration"
+
+        variable "variables" {
+          type = map(string)
+          default = {}
+          description = <<-END
+            Map of Github Action variables to create for this repository.
+
+            Each key, value pair maps directly to a `vars` context key, and
+            any restrictions Github places on variable naming will be reflected
+            within this map, too.
+
+            You can have a maximum of 500 variables per repository, and each variable's
+            value may be no larger than 48KB.
+          END
+
+          readme_example = <<-END
+            variables = {
+              MY_REPO_VARIABLE = "my-repo-variable-value"
+            }
+          END
+        }
+      }
+
+      section {
         title = "Secrets Configuration"
 
         variable "plaintext_secrets" {

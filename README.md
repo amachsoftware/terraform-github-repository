@@ -854,6 +854,29 @@ This is due to some terraform limitation and we will update the module once terr
 
     Determines whether the SSL certificate of the host for `url` will be verified when delivering payloads. Supported values include `0` (verification is performed) and `1` (verification is not performed). The default is `0`. **We strongly recommend not setting this to `1` as you are subject to man-in-the-middle and other attacks.**
 
+#### Variables Configuration
+
+- [**`variables`**](#var-variables): *(Optional `map(string)`)*<a name="var-variables"></a>
+
+  Map of Github Action variables to create for this repository.
+
+  Each key, value pair maps directly to a `vars` context key, and
+  any restrictions Github places on variable naming will be reflected
+  within this map, too.
+
+  You can have a maximum of 500 variables per repository, and each variable's
+  value may be no larger than 48KB.
+
+  Default is `{}`.
+
+  Example:
+
+  ```hcl
+  variables = {
+    MY_REPO_VARIABLE = "my-repo-variable-value"
+  }
+  ```
+
 #### Secrets Configuration
 
 - [**`plaintext_secrets`**](#var-plaintext_secrets): *(Optional `map(string)`)*<a name="var-plaintext_secrets"></a>
