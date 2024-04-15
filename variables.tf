@@ -501,14 +501,14 @@ variable "variables" {
   default = {}
 
   validation {
-    condition     = length(var.variables) > 500
+    condition     = length(var.variables) <= 500
     error_message = "Github restricts the number of Action variables per repository to 500"
   }
 
   validation {
-    condition = anytrue([
-      for _, v in var.variables : length(v) > 48 * 1000
-    ])
+    condition = alltrue(concat([true], [
+      for _, v in var.variables : length(v) <= 48 * 1000
+    ]))
     error_message = "Github restricts the maximum size of a single Action variable to 48KB"
   }
 }
