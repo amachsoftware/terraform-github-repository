@@ -202,9 +202,9 @@ resource "github_branch_protection" "branch_protection" {
 
   allows_deletions                = try(var.branch_protections_v4[each.value].allows_deletions, false)
   allows_force_pushes             = try(var.branch_protections_v4[each.value].allows_force_pushes, false)
-  blocks_creations                = try(var.branch_protections_v4[each.value].blocks_creations, false)
   enforce_admins                  = try(var.branch_protections_v4[each.value].enforce_admins, true)
-  push_restrictions               = try(var.branch_protections_v4[each.value].push_restrictions, [])
+  force_push_bypassers            = try(var.branch_protections_v4[each.value].force_push_bypassers, null)
+  lock_branch                     = try(var.branch_protections_v4[each.value].lock_branch, false)
   require_conversation_resolution = try(var.branch_protections_v4[each.value].require_conversation_resolution, false)
   require_signed_commits          = try(var.branch_protections_v4[each.value].require_signed_commits, false)
   required_linear_history         = try(var.branch_protections_v4[each.value].required_linear_history, false)
@@ -228,6 +228,17 @@ resource "github_branch_protection" "branch_protection" {
     content {
       strict   = try(required_status_checks.value.strict, false)
       contexts = try(required_status_checks.value.contexts, [])
+    }
+  }
+
+  dynamic "restrict_pushes" {
+    for_each = try([var.branch_protections_v4[each.value].restrict_pushes], [])
+    iterator = this
+
+    content {
+      # TODO(v7): remove backwards compat attrs (push_restrictions, blocks_creations)
+      blocks_creations = try(this.value.blocks_creations, var.branch_protections_v4[each.value].blocks_creations, true)
+      push_allowances  = try(this.value.push_allowances, var.branch_protections_v4[each.value].push_restrictions, null)
     }
   }
 }
