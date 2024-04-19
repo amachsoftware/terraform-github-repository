@@ -1,4 +1,4 @@
-[<img src="https://raw.githubusercontent.com/mineiros-io/brand/3bffd30e8bdbbde32c143e2650b2faa55f1df3ea/mineiros-primary-logo.svg" width="400"/>](https://amach.com)
+[<img src="https://repository-images.githubusercontent.com/662075696/23600e8a-7d2b-4f5c-aa58-afd28d01f056" width="400"/>](https://amach.com)
 
 [![Build Status](https://github.com/amachsoftware/terraform-github-repository/workflows/CI/CD%20Pipeline/badge.svg)](https://github.com/amachsoftware/terraform-github-repository/actions)
 [![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/amachsoftware/terraform-github-repository.svg?label=latest&sort=semver)](https://github.com/amachsoftware/terraform-github-repository/releases)

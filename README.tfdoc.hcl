@@ -1,5 +1,5 @@
 header {
-  image = "https://raw.githubusercontent.com/mineiros-io/brand/3bffd30e8bdbbde32c143e2650b2faa55f1df3ea/mineiros-primary-logo.svg"
+  image = "https://repository-images.githubusercontent.com/662075696/23600e8a-7d2b-4f5c-aa58-afd28d01f056"
   url   = "https://amach.com"
 
   badge "build" {

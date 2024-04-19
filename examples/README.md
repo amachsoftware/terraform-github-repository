@@ -1,4 +1,4 @@
-[<img src="https://raw.githubusercontent.com/mineiros-io/brand/3bffd30e8bdbbde32c143e2650b2faa55f1df3ea/mineiros-primary-logo.svg" width="400"/>][homepage]
+[<img src="https://repository-images.githubusercontent.com/662075696/23600e8a-7d2b-4f5c-aa58-afd28d01f056" width="400"/>][homepage]
 
 [![GitHub tag (latest SemVer)][badge-semver]][releases-github]
 [![license][badge-license]][apache20]
