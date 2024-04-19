@@ -1,16 +1,16 @@
 header {
   image = "https://raw.githubusercontent.com/mineiros-io/brand/3bffd30e8bdbbde32c143e2650b2faa55f1df3ea/mineiros-primary-logo.svg"
-  url   = "https://mineiros.io/?ref=terraform-github-repository"
+  url   = "https://amach.com"
 
   badge "build" {
-    image = "https://github.com/mineiros-io/terraform-github-repository/workflows/CI/CD%20Pipeline/badge.svg"
-    url   = "https://github.com/mineiros-io/terraform-github-repository/actions"
+    image = "https://github.com/amachsoftware/terraform-github-repository/workflows/CI/CD%20Pipeline/badge.svg"
+    url   = "https://github.com/amachsoftware/terraform-github-repository/actions"
     text  = "Build Status"
   }
 
   badge "semver)" {
-    image = "https://img.shields.io/github/v/tag/mineiros-io/terraform-github-repository.svg?label=latest&sort=semver"
-    url   = "https://github.com/mineiros-io/terraform-github-repository/releases"
+    image = "https://img.shields.io/github/v/tag/amachsoftware/terraform-github-repository.svg?label=latest&sort=semver"
+    url   = "https://github.com/amachsoftware/terraform-github-repository/releases"
     text  = "GitHub tag (latest SemVer)"
   }
 
@@ -24,12 +24,6 @@ header {
     image = "https://img.shields.io/badge/GH-4.10+-F8991D.svg?logo=terraform"
     url   = "https://github.com/terraform-providers/terraform-provider-github/releases"
     text  = "Github Provider Version"
-  }
-
-  badge "slack" {
-    image = "https://img.shields.io/badge/slack-@mineiros--community-f32752.svg?logo=slack"
-    url   = "https://join.slack.com/t/mineiros-community/shared_invite/zt-ehidestg-aLGoIENLVs6tvwJ11w9WGg"
-    text  = "Join Slack"
   }
 }
 
@@ -45,25 +39,6 @@ section {
 
     ** Note: Versions 5.3.0, 5.4.0, and 5.5.0 of the Terraform Github Provider have broken branch protections support and should not be used.**
   END
-
-  section {
-    title   = "GitHub as Code"
-    content = <<-END
-      [GitHub as Code][github-as-code] is a commercial solution built on top of
-      our open-source Terraform modules for GitHub. It helps our customers to
-      manage their GitHub organization more efficiently by enabling anyone in
-      their organization to **self-service** manage **on- and offboarding of users**,
-      **repositories**, and settings such as **branch protections**, **secrets**, and more
-      through code. GitHub as Code comes with **pre-configured GitHub Actions
-      pipelines** for **change pre-view in Pull Requests**, **fully automated
-      rollouts** and **rollbacks**. It's a comprehensive, ready-to-use blueprint
-      maintained by our team of platform engineering experts and saves
-      companies such as yours tons of time by building on top of a pre-configured
-      solution instead of building and maintaining it yourself.
-
-      For details please see [https://mineiros.io/github-as-code][github-as-code].
-    END
-  }
 
   section {
     title   = "Module Features"
@@ -108,7 +83,7 @@ section {
 
       ```hcl
       module "repository" {
-        source  = "mineiros-io/repository/github"
+        source  = "amachsoftware/repository/github"
         version = "~> 0.18.0"
 
         name               = "terraform-github-repository"
@@ -1422,17 +1397,21 @@ section {
   }
 
   section {
-    title   = "About Mineiros"
+    title   = "About Amach"
     content = <<-END
-      [Mineiros][homepage] is a remote-first company headquartered in Berlin, Germany
-      that solves development, automation and security challenges in cloud infrastructure.
+      [Amach][homepage]
 
-      Our vision is to massively reduce time and overhead for teams to manage and
-      deploy production-grade and secure cloud infrastructure.
+      Cloud experts around the world. Delivering quality solutions.
 
-      We offer commercial support for all of our modules and encourage you to reach out
-      if you have any questions or need help. Feel free to email us at [hello@mineiros.io] or join our
-      [Community Slack channel][slack].
+      From day 1, we have focused on finding the very best talent to drive us
+      forward.
+
+      At our heart, we are a team of Engineers who love problem-solving while
+      focusing on the quality of what we deliver.
+
+      We believe that infrastructure as code empowers organizations to provide
+      development teams direct access to infrastructure resources, thereby
+      fulfilling the spirit of DevOps.
     END
   }
 
@@ -1492,28 +1471,19 @@ references {
     value = "https://www.terraform.io/docs/providers/github/r/repository_autolink_reference.html#attributes-reference"
   }
   ref "homepage" {
-    value = "https://mineiros.io/?ref=terraform-github-repository"
-  }
-  ref "github-as-code" {
-    value = "https://mineiros.io/github-as-code?ref=terraform-github-repository"
-  }
-  ref "hello@mineiros.io" {
-    value = "mailto:hello@mineiros.io"
+    value = "https://amach.com"
   }
   ref "badge-build" {
-    value = "https://github.com/mineiros-io/terraform-github-repository/workflows/CI/CD%20Pipeline/badge.svg"
+    value = "https://github.com/amachsoftware/terraform-github-repository/workflows/CI/CD%20Pipeline/badge.svg"
   }
   ref "badge-semver" {
-    value = "https://img.shields.io/github/v/tag/mineiros-io/terraform-github-repository.svg?label=latest&sort=semver"
+    value = "https://img.shields.io/github/v/tag/amachsoftware/terraform-github-repository.svg?label=latest&sort=semver"
   }
   ref "badge-license" {
     value = "https://img.shields.io/badge/license-Apache%202.0-brightgreen.svg"
   }
   ref "badge-terraform" {
     value = "https://img.shields.io/badge/terraform-1.x-623CE4.svg?logo=terraform"
-  }
-  ref "badge-slack" {
-    value = "https://img.shields.io/badge/slack-@mineiros--community-f32752.svg?logo=slack"
   }
   ref "badge-tf-gh" {
     value = "https://img.shields.io/badge/GH-4.10+-F8991D.svg?logo=terraform"
@@ -1522,19 +1492,16 @@ references {
     value = "https://github.com/terraform-providers/terraform-provider-github/releases"
   }
   ref "build-status" {
-    value = "https://github.com/mineiros-io/terraform-github-repository/actions"
+    value = "https://github.com/amachsoftware/terraform-github-repository/actions"
   }
   ref "releases-github" {
-    value = "https://github.com/mineiros-io/terraform-github-repository/releases"
+    value = "https://github.com/amachsoftware/terraform-github-repository/releases"
   }
   ref "releases-terraform" {
     value = "https://github.com/hashicorp/terraform/releases"
   }
   ref "apache20" {
     value = "https://opensource.org/licenses/Apache-2.0"
-  }
-  ref "slack" {
-    value = "https://join.slack.com/t/mineiros-community/shared_invite/zt-ehidestg-aLGoIENLVs6tvwJ11w9WGg"
   }
   ref "terraform" {
     value = "https://www.terraform.io"
@@ -1546,24 +1513,24 @@ references {
     value = "https://semver.org/"
   }
   ref "variables.tf" {
-    value = "https://github.com/mineiros-io/terraform-github-repository/blob/main/variables.tf"
+    value = "https://github.com/amachsoftware/terraform-github-repository/blob/main/variables.tf"
   }
   ref "examples/" {
-    value = "https://github.com/mineiros-io/terraform-github-repository/blob/main/examples"
+    value = "https://github.com/amachsoftware/terraform-github-repository/blob/main/examples"
   }
   ref "issues" {
-    value = "https://github.com/mineiros-io/terraform-github-repository/issues"
+    value = "https://github.com/amachsoftware/terraform-github-repository/issues"
   }
   ref "license" {
-    value = "https://github.com/mineiros-io/terraform-github-repository/blob/main/LICENSE"
+    value = "https://github.com/amachsoftware/terraform-github-repository/blob/main/LICENSE"
   }
   ref "makefile" {
-    value = "https://github.com/mineiros-io/terraform-github-repository/blob/main/Makefile"
+    value = "https://github.com/amachsoftware/terraform-github-repository/blob/main/Makefile"
   }
   ref "pull requests" {
-    value = "https://github.com/mineiros-io/terraform-github-repository/pulls"
+    value = "https://github.com/amachsoftware/terraform-github-repository/pulls"
   }
   ref "contribution guidelines" {
-    value = "https://github.com/mineiros-io/terraform-github-repository/blob/main/CONTRIBUTING.md"
+    value = "https://github.com/amachsoftware/terraform-github-repository/blob/main/CONTRIBUTING.md"
   }
 }

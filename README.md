@@ -1,10 +1,9 @@
-[<img src="https://raw.githubusercontent.com/mineiros-io/brand/3bffd30e8bdbbde32c143e2650b2faa55f1df3ea/mineiros-primary-logo.svg" width="400"/>](https://mineiros.io/?ref=terraform-github-repository)
+[<img src="https://raw.githubusercontent.com/mineiros-io/brand/3bffd30e8bdbbde32c143e2650b2faa55f1df3ea/mineiros-primary-logo.svg" width="400"/>](https://amach.com)
 
-[![Build Status](https://github.com/mineiros-io/terraform-github-repository/workflows/CI/CD%20Pipeline/badge.svg)](https://github.com/mineiros-io/terraform-github-repository/actions)
-[![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/mineiros-io/terraform-github-repository.svg?label=latest&sort=semver)](https://github.com/mineiros-io/terraform-github-repository/releases)
+[![Build Status](https://github.com/amachsoftware/terraform-github-repository/workflows/CI/CD%20Pipeline/badge.svg)](https://github.com/amachsoftware/terraform-github-repository/actions)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/amachsoftware/terraform-github-repository.svg?label=latest&sort=semver)](https://github.com/amachsoftware/terraform-github-repository/releases)
 [![Terraform Version](https://img.shields.io/badge/terraform-1.x-623CE4.svg?logo=terraform)](https://github.com/hashicorp/terraform/releases)
 [![Github Provider Version](https://img.shields.io/badge/GH-4.10+-F8991D.svg?logo=terraform)](https://github.com/terraform-providers/terraform-provider-github/releases)
-[![Join Slack](https://img.shields.io/badge/slack-@mineiros--community-f32752.svg?logo=slack)](https://join.slack.com/t/mineiros-community/shared_invite/zt-ehidestg-aLGoIENLVs6tvwJ11w9WGg)
 
 # terraform-github-repository
 
@@ -17,7 +16,6 @@ A [Terraform] module for creating a public or private repository on [Github].
 ** Note: Versions 5.3.0, 5.4.0, and 5.5.0 of the Terraform Github Provider have broken branch protections support and should not be used.**
 
 
-- [GitHub as Code](#github-as-code)
 - [Module Features](#module-features)
 - [Getting Started](#getting-started)
 - [Module Argument Reference](#module-argument-reference)
@@ -33,6 +31,7 @@ A [Terraform] module for creating a public or private repository on [Github].
     - [Issue Labels Configuration](#issue-labels-configuration)
     - [Projects Configuration](#projects-configuration)
     - [Webhooks Configuration](#webhooks-configuration)
+    - [Variables Configuration](#variables-configuration)
     - [Secrets Configuration](#secrets-configuration)
     - [Autolink References Configuration](#autolink-references-configuration)
     - [App Installations](#app-installations)
@@ -42,27 +41,11 @@ A [Terraform] module for creating a public or private repository on [Github].
   - [Terraform Github Provider Documentation](#terraform-github-provider-documentation)
 - [Module Versioning](#module-versioning)
   - [Backwards compatibility in `0.0.z` and `0.y.z` version](#backwards-compatibility-in-00z-and-0yz-version)
-- [About Mineiros](#about-mineiros)
+- [About Amach](#about-amach)
 - [Reporting Issues](#reporting-issues)
 - [Contributing](#contributing)
 - [Makefile Targets](#makefile-targets)
 - [License](#license)
-
-## GitHub as Code
-
-[GitHub as Code][github-as-code] is a commercial solution built on top of
-our open-source Terraform modules for GitHub. It helps our customers to
-manage their GitHub organization more efficiently by enabling anyone in
-their organization to **self-service** manage **on- and offboarding of users**,
-**repositories**, and settings such as **branch protections**, **secrets**, and more
-through code. GitHub as Code comes with **pre-configured GitHub Actions
-pipelines** for **change pre-view in Pull Requests**, **fully automated
-rollouts** and **rollbacks**. It's a comprehensive, ready-to-use blueprint
-maintained by our team of platform engineering experts and saves
-companies such as yours tons of time by building on top of a pre-configured
-solution instead of building and maintaining it yourself.
-
-For details please see [https://mineiros.io/github-as-code][github-as-code].
 
 ## Module Features
 
@@ -103,7 +86,7 @@ Most basic usage creating a new private github repository.
 
 ```hcl
 module "repository" {
-  source  = "mineiros-io/repository/github"
+  source  = "amachsoftware/repository/github"
   version = "~> 0.18.0"
 
   name               = "terraform-github-repository"
@@ -1068,17 +1051,21 @@ Given a version number `MAJOR.MINOR.PATCH`, we increment the:
 - Backwards compatibility in versions `0.0.z` is **not guaranteed** when `z` is increased. (Initial development)
 - Backwards compatibility in versions `0.y.z` is **not guaranteed** when `y` is increased. (Pre-release)
 
-## About Mineiros
+## About Amach
 
-[Mineiros][homepage] is a remote-first company headquartered in Berlin, Germany
-that solves development, automation and security challenges in cloud infrastructure.
+[Amach][homepage]
 
-Our vision is to massively reduce time and overhead for teams to manage and
-deploy production-grade and secure cloud infrastructure.
+Cloud experts around the world. Delivering quality solutions.
 
-We offer commercial support for all of our modules and encourage you to reach out
-if you have any questions or need help. Feel free to email us at [hello@mineiros.io] or join our
-[Community Slack channel][slack].
+From day 1, we have focused on finding the very best talent to drive us
+forward.
+
+At our heart, we are a team of Engineers who love problem-solving while
+focusing on the quality of what we deliver.
+
+We believe that infrastructure as code empowers organizations to provide
+development teams direct access to infrastructure resources, thereby
+fulfilling the spirit of DevOps.
 
 ## Reporting Issues
 
@@ -1112,28 +1099,24 @@ Copyright &copy; 2020-2022 [Mineiros GmbH][homepage]
 [`github_repository_deploy_key`]: https://www.terraform.io/docs/providers/github/r/repository_deploy_key.html#attributes-reference
 [`github_repository_project`]: https://www.terraform.io/docs/providers/github/r/repository_project.html#attributes-reference
 [`github_repository_autolink_reference`]: https://www.terraform.io/docs/providers/github/r/repository_autolink_reference.html#attributes-reference
-[homepage]: https://mineiros.io/?ref=terraform-github-repository
-[github-as-code]: https://mineiros.io/github-as-code?ref=terraform-github-repository
-[hello@mineiros.io]: mailto:hello@mineiros.io
-[badge-build]: https://github.com/mineiros-io/terraform-github-repository/workflows/CI/CD%20Pipeline/badge.svg
-[badge-semver]: https://img.shields.io/github/v/tag/mineiros-io/terraform-github-repository.svg?label=latest&sort=semver
+[homepage]: https://amach.com
+[badge-build]: https://github.com/amachsoftware/terraform-github-repository/workflows/CI/CD%20Pipeline/badge.svg
+[badge-semver]: https://img.shields.io/github/v/tag/amachsoftware/terraform-github-repository.svg?label=latest&sort=semver
 [badge-license]: https://img.shields.io/badge/license-Apache%202.0-brightgreen.svg
 [badge-terraform]: https://img.shields.io/badge/terraform-1.x-623CE4.svg?logo=terraform
-[badge-slack]: https://img.shields.io/badge/slack-@mineiros--community-f32752.svg?logo=slack
 [badge-tf-gh]: https://img.shields.io/badge/GH-4.10+-F8991D.svg?logo=terraform
 [releases-github-provider]: https://github.com/terraform-providers/terraform-provider-github/releases
-[build-status]: https://github.com/mineiros-io/terraform-github-repository/actions
-[releases-github]: https://github.com/mineiros-io/terraform-github-repository/releases
+[build-status]: https://github.com/amachsoftware/terraform-github-repository/actions
+[releases-github]: https://github.com/amachsoftware/terraform-github-repository/releases
 [releases-terraform]: https://github.com/hashicorp/terraform/releases
 [apache20]: https://opensource.org/licenses/Apache-2.0
-[slack]: https://join.slack.com/t/mineiros-community/shared_invite/zt-ehidestg-aLGoIENLVs6tvwJ11w9WGg
 [terraform]: https://www.terraform.io
 [aws]: https://aws.amazon.com/
 [semantic versioning (semver)]: https://semver.org/
-[variables.tf]: https://github.com/mineiros-io/terraform-github-repository/blob/main/variables.tf
-[examples/]: https://github.com/mineiros-io/terraform-github-repository/blob/main/examples
-[issues]: https://github.com/mineiros-io/terraform-github-repository/issues
-[license]: https://github.com/mineiros-io/terraform-github-repository/blob/main/LICENSE
-[makefile]: https://github.com/mineiros-io/terraform-github-repository/blob/main/Makefile
-[pull requests]: https://github.com/mineiros-io/terraform-github-repository/pulls
-[contribution guidelines]: https://github.com/mineiros-io/terraform-github-repository/blob/main/CONTRIBUTING.md
+[variables.tf]: https://github.com/amachsoftware/terraform-github-repository/blob/main/variables.tf
+[examples/]: https://github.com/amachsoftware/terraform-github-repository/blob/main/examples
+[issues]: https://github.com/amachsoftware/terraform-github-repository/issues
+[license]: https://github.com/amachsoftware/terraform-github-repository/blob/main/LICENSE
+[makefile]: https://github.com/amachsoftware/terraform-github-repository/blob/main/Makefile
+[pull requests]: https://github.com/amachsoftware/terraform-github-repository/pulls
+[contribution guidelines]: https://github.com/amachsoftware/terraform-github-repository/blob/main/CONTRIBUTING.md
