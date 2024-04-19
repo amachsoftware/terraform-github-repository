@@ -812,14 +812,6 @@ section {
             END
           }
 
-          attribute "blocks_creations" {
-            type        = bool
-            default     = false
-            description = <<-END
-              Setting this to `true` will block creating the branch.
-            END
-          }
-
           attribute "enforce_admins" {
             type        = bool
             default     = true
@@ -828,12 +820,26 @@ section {
             END
           }
 
-          attribute "push_restrictions" {
+          attribute "force_push_bypassers" {
             type        = list(string)
             default     = []
             description = <<-END
-              The list of actor Names/IDs that may push to the branch.
-              Actor names must either begin with a "/" for users or the organization name followed by a "/" for teams.
+              A list of actors that are allowed to bypass force push
+              restrictions.
+
+              An actor may be one of
+
+              - A graphql entity ID
+              - A user name prefixed by a single '/' (/:user)
+              - A organization team (:org/:team)
+            END
+          }
+
+          attribute "lock_branch" {
+            type        = bool
+            default     = false
+            description = <<-END
+              Lock the branch, making it readonly.
             END
           }
 
@@ -939,6 +945,36 @@ section {
               default     = []
               description = <<-END
                 The list of status checks to require in order to merge into this branch. If default is `[]` no status checks are required.
+              END
+            }
+          }
+
+          attribute "restrict_pushes" {
+            type        = object(restrict_pushes)
+            description = <<-END
+              Restrict entities that can push to this branch
+            END
+
+            attribute "blocks_creation" {
+              type        = bool
+              default     = true
+              description = <<-END
+                Prevent entities from creating branches that match this branch
+                `pattern`.
+              END
+            }
+
+            attribute "push_allowances" {
+              type        = list(string)
+              default     = []
+              description = <<-END
+                List of actors that may push to this branch
+
+                An actor may be one of
+
+                - A graphql entity ID
+                - A user name prefixed by a single '/' (/:user)
+                - A organization team (:org/:team)
               END
             }
           }
