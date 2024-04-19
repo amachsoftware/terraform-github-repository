@@ -770,12 +770,15 @@ section {
           type        = list(branch_protection_v4)
           default     = []
           description = <<-END
-            This resource allows you to configure v4 branch protection for repositories in your organization.
+            This resource allows you to configure v4 branch protection for
+            repositories in your organization.
 
-            Each element in the list is a branch to be protected and the value the corresponding to the desired configuration for the branch.
+            Each element in the list is a branch to be protected and the value
+            the corresponding to the desired configuration for the branch.
 
-            When applied, the branch will be protected from forced pushes and deletion.
-            Additional constraints, such as required status checks or restrictions on users and teams, can also be configured.
+            When applied, the branch will be protected from forced pushes and
+            deletion. Additional constraints, such as required status checks or
+            restrictions on users and teams, can also be configured.
 
             **_NOTE:_** May conflict with v3 branch protections if used for the same branch.
           END
@@ -808,7 +811,11 @@ section {
             type        = bool
             default     = false
             description = <<-END
-              Setting this to `true` to allow force pushes on the branch.
+              Setting this to `true` allows force pushes on the branch to
+              everyone.
+
+              Should be set to false if either `force_push_bypassers` or
+              `restrict_pushes` is used.
             END
           }
 
@@ -847,7 +854,8 @@ section {
             type        = bool
             default     = false
             description = <<-END
-              Setting this to true requires all conversations on code must be resolved before a pull request can be merged.
+              Setting this to true requires all conversations on code must be
+              resolved before a pull request can be merged.
             END
           }
 
@@ -855,7 +863,7 @@ section {
             type        = bool
             default     = false
             description = <<-END
-              Setting this to true requires all commits to be signed with GPG.
+              Setting this to true requires all commits to be signed.
             END
           }
 
@@ -863,7 +871,9 @@ section {
             type        = bool
             default     = false
             description = <<-END
-              Setting this to true enforces a linear commit Git history, which prevents anyone from pushing merge commits to a branch.
+              Setting this to true enforces a linear commit Git history.
+
+              Prevents anyone from pushing merge commits to this branch.
             END
           }
 
@@ -893,8 +903,14 @@ section {
               default     = []
               description = <<-END
                 The list of actor Names/IDs with dismissal access.
-                If not empty, `restrict_dismissals` is ignored
-                Actor names must either begin with a `/` for users or the organization name followed by a `/` for teams.
+
+                If set, `restrict_dismissals` is ignored.
+
+                An actor may be one of
+
+                - A graphql entity ID
+                - A user name prefixed by a single '/' (/:user)
+                - A organization team (:org/:team)
               END
             }
 
@@ -902,8 +918,14 @@ section {
               type        = list(string)
               default     = []
               description = <<-END
-                The list of actor Names/IDs that are allowed to bypass pull request requirements.
-                Actor names must either begin with a `/` for users or the organization name followed by a `/` for teams.
+                The list of actor Names/IDs that are allowed to bypass pull
+                request requirements.
+
+                An actor may be one of
+
+                - A graphql entity ID
+                - A user name prefixed by a single '/' (/:user)
+                - A organization team (:org/:team)
               END
             }
 
@@ -911,7 +933,8 @@ section {
               type        = bool
               default     = true
               description = <<-END
-                Require an approved review in pull requests including files with a designated code owner.
+                Require an approved review in pull requests including files
+                with a designated code owner.
               END
             }
 
@@ -919,8 +942,10 @@ section {
               type        = number
               default     = 0
               description = <<-END
-                Require x number of approvals to satisfy branch protection requirements.
-                If this is specified it must be a number between 0-6.
+                Require this number of approvals to satisfy branch protection
+                requirements.
+
+                If specified, it must be a number between 0-6.
               END
             }
           }
@@ -928,8 +953,7 @@ section {
           attribute "required_status_checks" {
             type        = object(required_status_checks)
             description = <<-END
-              Enforce restrictions for required status checks.
-              See Required Status Checks below for details.
+              Require certain status checks pass before merges are legal
             END
 
             attribute "strict" {
@@ -944,7 +968,10 @@ section {
               type        = list(string)
               default     = []
               description = <<-END
-                The list of status checks to require in order to merge into this branch. If default is `[]` no status checks are required.
+                The list of status checks to require in order to merge into
+                this branch.
+
+                If the list is empty or null, no checks are required.
               END
             }
           }
