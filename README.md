@@ -598,12 +598,15 @@ This is due to some terraform limitation and we will update the module once terr
 
 - [**`branch_protections_v4`**](#var-branch_protections_v4): *(Optional `list(branch_protection_v4)`)*<a name="var-branch_protections_v4"></a>
 
-  This resource allows you to configure v4 branch protection for repositories in your organization.
+  This resource allows you to configure v4 branch protection for
+  repositories in your organization.
 
-  Each element in the list is a branch to be protected and the value the corresponding to the desired configuration for the branch.
+  Each element in the list is a branch to be protected and the value
+  the corresponding to the desired configuration for the branch.
 
-  When applied, the branch will be protected from forced pushes and deletion.
-  Additional constraints, such as required status checks or restrictions on users and teams, can also be configured.
+  When applied, the branch will be protected from forced pushes and
+  deletion. Additional constraints, such as required status checks or
+  restrictions on users and teams, can also be configured.
 
   **_NOTE:_** May conflict with v3 branch protections if used for the same branch.
 
@@ -628,13 +631,11 @@ This is due to some terraform limitation and we will update the module once terr
 
   - [**`allows_force_pushes`**](#attr-branch_protections_v4-allows_force_pushes): *(Optional `bool`)*<a name="attr-branch_protections_v4-allows_force_pushes"></a>
 
-    Setting this to `true` to allow force pushes on the branch.
+    Setting this to `true` allows force pushes on the branch to
+    everyone.
 
-    Default is `false`.
-
-  - [**`blocks_creations`**](#attr-branch_protections_v4-blocks_creations): *(Optional `bool`)*<a name="attr-branch_protections_v4-blocks_creations"></a>
-
-    Setting this to `true` will block creating the branch.
+    Should be set to false if either `force_push_bypassers` or
+    `restrict_pushes` is used.
 
     Default is `false`.
 
@@ -644,28 +645,43 @@ This is due to some terraform limitation and we will update the module once terr
 
     Default is `true`.
 
-  - [**`push_restrictions`**](#attr-branch_protections_v4-push_restrictions): *(Optional `list(string)`)*<a name="attr-branch_protections_v4-push_restrictions"></a>
+  - [**`force_push_bypassers`**](#attr-branch_protections_v4-force_push_bypassers): *(Optional `list(string)`)*<a name="attr-branch_protections_v4-force_push_bypassers"></a>
 
-    The list of actor Names/IDs that may push to the branch.
-    Actor names must either begin with a "/" for users or the organization name followed by a "/" for teams.
+    A list of actors that are allowed to bypass force push
+    restrictions.
+
+    An actor may be one of
+
+    - A graphql entity ID
+    - A user name prefixed by a single '/' (/:user)
+    - A organization team (:org/:team)
 
     Default is `[]`.
 
+  - [**`lock_branch`**](#attr-branch_protections_v4-lock_branch): *(Optional `bool`)*<a name="attr-branch_protections_v4-lock_branch"></a>
+
+    Lock the branch, making it readonly.
+
+    Default is `false`.
+
   - [**`require_conversation_resolution`**](#attr-branch_protections_v4-require_conversation_resolution): *(Optional `bool`)*<a name="attr-branch_protections_v4-require_conversation_resolution"></a>
 
-    Setting this to true requires all conversations on code must be resolved before a pull request can be merged.
+    Setting this to true requires all conversations on code must be
+    resolved before a pull request can be merged.
 
     Default is `false`.
 
   - [**`require_signed_commits`**](#attr-branch_protections_v4-require_signed_commits): *(Optional `bool`)*<a name="attr-branch_protections_v4-require_signed_commits"></a>
 
-    Setting this to true requires all commits to be signed with GPG.
+    Setting this to true requires all commits to be signed.
 
     Default is `false`.
 
   - [**`required_linear_history`**](#attr-branch_protections_v4-required_linear_history): *(Optional `bool`)*<a name="attr-branch_protections_v4-required_linear_history"></a>
 
-    Setting this to true enforces a linear commit Git history, which prevents anyone from pushing merge commits to a branch.
+    Setting this to true enforces a linear commit Git history.
+
+    Prevents anyone from pushing merge commits to this branch.
 
     Default is `false`.
 
@@ -688,35 +704,49 @@ This is due to some terraform limitation and we will update the module once terr
     - [**`dismissal_restrictions`**](#attr-branch_protections_v4-required_pull_request_reviews-dismissal_restrictions): *(Optional `list(string)`)*<a name="attr-branch_protections_v4-required_pull_request_reviews-dismissal_restrictions"></a>
 
       The list of actor Names/IDs with dismissal access.
-      If not empty, `restrict_dismissals` is ignored
-      Actor names must either begin with a `/` for users or the organization name followed by a `/` for teams.
+
+      If set, `restrict_dismissals` is ignored.
+
+      An actor may be one of
+
+      - A graphql entity ID
+      - A user name prefixed by a single '/' (/:user)
+      - A organization team (:org/:team)
 
       Default is `[]`.
 
     - [**`pull_request_bypassers`**](#attr-branch_protections_v4-required_pull_request_reviews-pull_request_bypassers): *(Optional `list(string)`)*<a name="attr-branch_protections_v4-required_pull_request_reviews-pull_request_bypassers"></a>
 
-      The list of actor Names/IDs that are allowed to bypass pull request requirements.
-      Actor names must either begin with a `/` for users or the organization name followed by a `/` for teams.
+      The list of actor Names/IDs that are allowed to bypass pull
+      request requirements.
+
+      An actor may be one of
+
+      - A graphql entity ID
+      - A user name prefixed by a single '/' (/:user)
+      - A organization team (:org/:team)
 
       Default is `[]`.
 
     - [**`require_code_owner_reviews`**](#attr-branch_protections_v4-required_pull_request_reviews-require_code_owner_reviews): *(Optional `bool`)*<a name="attr-branch_protections_v4-required_pull_request_reviews-require_code_owner_reviews"></a>
 
-      Require an approved review in pull requests including files with a designated code owner.
+      Require an approved review in pull requests including files
+      with a designated code owner.
 
       Default is `true`.
 
     - [**`required_approving_review_count`**](#attr-branch_protections_v4-required_pull_request_reviews-required_approving_review_count): *(Optional `number`)*<a name="attr-branch_protections_v4-required_pull_request_reviews-required_approving_review_count"></a>
 
-      Require x number of approvals to satisfy branch protection requirements.
-      If this is specified it must be a number between 0-6.
+      Require this number of approvals to satisfy branch protection
+      requirements.
+
+      If specified, it must be a number between 0-6.
 
       Default is `0`.
 
   - [**`required_status_checks`**](#attr-branch_protections_v4-required_status_checks): *(Optional `object(required_status_checks)`)*<a name="attr-branch_protections_v4-required_status_checks"></a>
 
-    Enforce restrictions for required status checks.
-    See Required Status Checks below for details.
+    Require certain status checks pass before merges are legal
 
     The `required_status_checks` object accepts the following attributes:
 
@@ -728,7 +758,35 @@ This is due to some terraform limitation and we will update the module once terr
 
     - [**`contexts`**](#attr-branch_protections_v4-required_status_checks-contexts): *(Optional `list(string)`)*<a name="attr-branch_protections_v4-required_status_checks-contexts"></a>
 
-      The list of status checks to require in order to merge into this branch. If default is `[]` no status checks are required.
+      The list of status checks to require in order to merge into
+      this branch.
+
+      If the list is empty or null, no checks are required.
+
+      Default is `[]`.
+
+  - [**`restrict_pushes`**](#attr-branch_protections_v4-restrict_pushes): *(Optional `object(restrict_pushes)`)*<a name="attr-branch_protections_v4-restrict_pushes"></a>
+
+    Restrict entities that can push to this branch
+
+    The `restrict_pushes` object accepts the following attributes:
+
+    - [**`blocks_creation`**](#attr-branch_protections_v4-restrict_pushes-blocks_creation): *(Optional `bool`)*<a name="attr-branch_protections_v4-restrict_pushes-blocks_creation"></a>
+
+      Prevent entities from creating branches that match this branch
+      `pattern`.
+
+      Default is `true`.
+
+    - [**`push_allowances`**](#attr-branch_protections_v4-restrict_pushes-push_allowances): *(Optional `list(string)`)*<a name="attr-branch_protections_v4-restrict_pushes-push_allowances"></a>
+
+      List of actors that may push to this branch
+
+      An actor may be one of
+
+      - A graphql entity ID
+      - A user name prefixed by a single '/' (/:user)
+      - A organization team (:org/:team)
 
       Default is `[]`.
 
