@@ -28,6 +28,7 @@ A [Terraform] module for creating a public or private repository on [Github].
     - [Deploy Keys Configuration](#deploy-keys-configuration)
     - [Branch Protections v3 Configuration](#branch-protections-v3-configuration)
     - [Branch Protections v4 Configuration](#branch-protections-v4-configuration)
+    - [Security And Analysis Configuration](#security-and-analysis-configuration)
     - [Issue Labels Configuration](#issue-labels-configuration)
     - [Projects Configuration](#projects-configuration)
     - [Webhooks Configuration](#webhooks-configuration)
@@ -789,6 +790,35 @@ This is due to some terraform limitation and we will update the module once terr
       - A organization team (:org/:team)
 
       Default is `[]`.
+
+#### Security And Analysis Configuration
+
+- [**`security_and_analysis`**](#var-security_and_analysis): *(Optional `object(security_and_analysis)`)*<a name="var-security_and_analysis"></a>
+
+  (Optional) The repository's [security and analysis](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository) configuration.
+  See [Security and Analysis Configuration](#security-and-analysis-configuration) below for details.
+
+  Default is `{}`.
+
+  The `security_and_analysis` object accepts the following attributes:
+
+  - [**`advanced_security`**](#attr-security_and_analysis-advanced_security): *(**Required** `string`)*<a name="attr-security_and_analysis-advanced_security"></a>
+
+    The advanced security configuration for the repository. See [Advanced Security Configuration](#advanced-security-configuration) below for details.
+
+    Default is `"disabled"`.
+
+  - [**`secret_scanning`**](#attr-security_and_analysis-secret_scanning): *(**Required** `string`)*<a name="attr-security_and_analysis-secret_scanning"></a>
+
+    The secret scanning configuration for the repository. See [Secret Scanning Configuration](#secret-scanning-configuration) below for details.
+
+    Default is `"disabled"`.
+
+  - [**`secret_scanning_push_protection`**](#attr-security_and_analysis-secret_scanning_push_protection): *(**Required** `string`)*<a name="attr-security_and_analysis-secret_scanning_push_protection"></a>
+
+    The secret scanning push protection configuration for the repository. See [Secret Scanning Push Protection Configuration](#secret-scanning-push-protection-configuration) below for details.
+
+    Default is `"disabled"`.
 
 #### Issue Labels Configuration
 
