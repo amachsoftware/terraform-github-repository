@@ -1168,8 +1168,8 @@ section {
         title = "Variables Configuration"
 
         variable "variables" {
-          type = map(string)
-          default = {}
+          type        = map(string)
+          default     = {}
           description = <<-END
             Map of Github Action variables to create for this repository.
 

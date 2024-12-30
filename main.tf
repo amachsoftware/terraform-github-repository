@@ -231,10 +231,10 @@ resource "github_branch_protection" "branch_protection" {
     }
   }
 
+  # BD-670 restrict_pushes runs zero times if no data exists
   dynamic "restrict_pushes" {
-    for_each = try([var.branch_protections_v4[each.value].restrict_pushes], [])
+    for_each = try([coalesce(var.branch_protections_v4[each.value].restrict_pushes, null)], [])
     iterator = this
-
     content {
       # TODO(v7): remove backwards compat attrs (push_restrictions, blocks_creations)
       blocks_creations = try(this.value.blocks_creations, var.branch_protections_v4[each.value].blocks_creations, true)
