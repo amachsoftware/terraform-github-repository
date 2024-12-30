@@ -125,6 +125,42 @@ variable "pages" {
   default = null
 }
 
+variable "security_and_analysis" {
+  description = <<-EOF
+    (Optional) The repository's security and analysis configuration.
+    See [Security and Analysis Configuration](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository#security-and-analysis-configuration) for details.
+
+    advanced_security               | (Optional) The advanced security configuration for the repository.
+    secret_scanning                 | (Optional) The secret scanning configuration for the repository.
+    secret_scanning_push_protection | (Optional) The secret scanning push protection configuration for the repository.
+  EOF
+
+  type = object({
+    advanced_security               = optional(string, "disabled")
+    secret_scanning                 = optional(string, "disabled")
+    secret_scanning_push_protection = optional(string, "disabled")
+  })
+  default = {}
+  validation {
+    condition = alltrue(
+      [
+        for key, value in var.security_and_analysis : contains(["enabled", "disabled"], value)
+      ]
+    )
+    error_message = "Allowed values for security_and_analysis.advanced_security, security_and_analysis.secret_scanning, security_and_analysis.secret_scanning_push_protection are \"disabled\" and \"enabled\""
+  }
+
+  validation {
+    condition     = (var.security_and_analysis.secret_scanning == "enabled" && var.security_and_analysis.advanced_security == "enabled") || true
+    error_message = "If `security_and_analysis.secret_scanning` set to enabled, the repository's visibility must be public or security_and_analysis.advanced_security must also be set to enabled."
+  }
+  validation {
+    condition     = (var.security_and_analysis.secret_scanning_push_protection == "enabled" && var.security_and_analysis.advanced_security == "enabled") || true
+    error_message = "If `security_and_analysis.secret_scanning_push_protection` set to enabled, the repository's visibility must be public or security_and_analysis.advanced_security must also be set to enabled."
+  }
+
+}
+
 variable "gitignore_template" {
   description = "(Optional) Use the name of the template without the extension. For example, Haskell. Available templates: https://github.com/github/gitignore"
   type        = string

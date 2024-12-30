@@ -1009,6 +1009,49 @@ section {
       }
 
       section {
+        title = "Security And Analysis Configuration"
+
+        variable "security_and_analysis" {
+          type        = object(security_and_analysis)
+          default     = {}
+          description = <<-END
+            (Optional) The repository's [security and analysis](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository) configuration.
+            See [Security and Analysis Configuration](#security-and-analysis-configuration) below for details.
+          END
+
+          attribute "advanced_security" {
+            type        = string
+            required    = true
+            default     = "disabled"
+            description = <<-END
+              The advanced security configuration for the repository. See [Advanced Security Configuration](#advanced-security-configuration) below for details.
+            END
+          }
+
+          attribute "secret_scanning" {
+            type        = string
+            required    = true
+            default     = "disabled"
+            description = <<-END
+              The secret scanning configuration for the repository. See [Secret Scanning Configuration](#secret-scanning-configuration) below for details.
+            END
+          }
+
+          attribute "secret_scanning_push_protection" {
+            type        = string
+            required    = true
+            default     = "disabled"
+            description = <<-END
+              The secret scanning push protection configuration for the repository. See [Secret Scanning Push Protection Configuration](#secret-scanning-push-protection-configuration) below for details.
+            END
+          }
+
+        }
+      }
+
+
+
+      section {
         title = "Issue Labels Configuration"
 
         variable "issue_labels" {
